@@ -6,8 +6,8 @@
 
   #yueko_ {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     /* background-color: beige; */
@@ -27,9 +27,12 @@
 
 
 
-img {
+#yueko_ img {
+  grid-row: 2 / span 4;
+  grid-row-start: 2;
   height: 300px;
   margin: 10px;
+
 }
 
 
