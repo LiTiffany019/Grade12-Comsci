@@ -4,11 +4,39 @@
     box-sizing: border-box;
   }
 
-#main {
+  #yueko_ {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     justify-items: center;
     align-items: center;
-    background-color: beige;
+    /* background-color: beige; */
+    border-style: 1px solid black;
+    
 }
+
+#yueko_ .h2{
+  grid-column: 1 / span 3;
+
+}
+#header {
+  background-color: rgb(23,29,87);
+  color: white;
+
+}
+
+
+
+img {
+  height: 300px;
+  margin: 10px;
+}
+
+
+
+
+/* 
+.artist {
+  border: solid 2px black;
+  margin-bottom: 5px;
+} */
