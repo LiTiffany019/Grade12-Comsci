@@ -21,7 +21,7 @@
   background-color: rgb(23, 29, 87);
 }
 
-#artist{
+.artist{
   display: grid;
   grid-template-rows: 2, 15rem, 20rem;
   grid-template-columns: repeat(3, 1fr);
@@ -35,10 +35,11 @@
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
+  /* background-color: azure; */
   border-radius: 5px;
   height: 100px;
   width: 200px;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 img {
@@ -48,17 +49,7 @@ img {
   margin: 10px;
 }
 
-#artist p {
+.artist p {
   text-align: center;
 }
 
-
-/* #Rrrrrrice0303 {
-
-} */
-
-/* 
-.artist {
-  border: solid 2px black;
-  margin-bottom: 5px;
-} */
