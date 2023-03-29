@@ -21,7 +21,7 @@
   background-color: rgb(23, 29, 87);
 }
 
-#yueko_ {
+#artist{
   display: grid;
   grid-template-rows: 2, 15rem, 20rem;
   grid-template-columns: repeat(3, 1fr);
@@ -31,7 +31,7 @@
   margin-bottom: 1rem;
 }
 
-#yueko_ .artist {
+.profile{
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
@@ -41,14 +41,14 @@
   margin-top: 1rem;
 }
 
-#yueko_ img {
+img {
   grid-row: 2 / span 4;
   grid-row-start: 2;
   height: 300px;
   margin: 10px;
 }
 
-#yueko_ p {
+#artist p {
   text-align: center;
 }
 
