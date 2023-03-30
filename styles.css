@@ -19,6 +19,12 @@
 
 #header h1 {
   background-color: rgb(23, 29, 87);
+  font-size: 35px;
+}
+
+#header p {
+  background-color: rgb(23, 29, 87);
+  font-size: smaller;
 }
 
 .artist{
@@ -27,7 +33,6 @@
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
-  border-style: 1px solid black;
   margin-bottom: 1rem;
 }
 
@@ -35,11 +40,21 @@
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
-  /* background-color: azure; */
-  border-radius: 5px;
+  background-color: hsl(240, 7%, 78%);
+  border-radius: 10px;
   height: 100px;
-  width: 200px;
+  width: 75%;
   margin: 1rem;
+}
+
+.profile h1 {
+  background-color: hsl(240, 7%, 78%);
+  border-radius: 10px;
+  padding-top: 10px;
+}
+
+.profile a {
+  background-color: hsl(240, 7%, 78%);
 }
 
 img {
@@ -49,7 +64,12 @@ img {
   margin: 10px;
 }
 
-.artist p {
+.tile {
+  margin: 1rem;
+  background-color: gray;
+}
+
+.tile p {
   text-align: center;
 }
 
