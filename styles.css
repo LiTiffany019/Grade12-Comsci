@@ -2,28 +2,30 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: bisque;
+  /* background-color: bisque; */
+  
 }
 
 #main {
   display: grid;
-  grid-template-rows: 4;
+  grid-template-rows: 5;
+  background-image: linear-gradient(rgb(23, 29, 87), bisque);
 }
 
 #header {
-  background-color: rgb(23, 29, 87);
+  background-color: rgb(23, 29, 87 90%);
   color: white;
   text-align: center;
   padding: 3rem;
 }
 
 #header h1 {
-  background-color: rgb(23, 29, 87);
+  background-color: rgb(23, 29, 87 90%);
   font-size: 35px;
 }
 
 #header p {
-  background-color: rgb(23, 29, 87);
+  background-color: rgb(23, 29, 87 90%);
   font-size: smaller;
 }
 
@@ -36,11 +38,12 @@
   margin-bottom: 1rem;
 }
 
+
 .profile{
   grid-column: 1 / span 3;
   grid-row: 1;
   text-align: center;
-  background-color: hsl(240, 7%, 78%);
+  background-color: rgb(195, 195, 203);
   border-radius: 10px;
   height: 100px;
   width: 75%;
@@ -48,28 +51,49 @@
 }
 
 .profile h1 {
-  background-color: hsl(240, 7%, 78%);
+  background-color: rgb(195, 195, 203);
   border-radius: 10px;
   padding-top: 10px;
 }
 
 .profile a {
-  background-color: hsl(240, 7%, 78%);
+  background-color: rgb(195, 195, 203);
+  text-decoration: none;
 }
 
 img {
   grid-row: 2 / span 4;
   grid-row-start: 2;
-  height: 300px;
+  height: 400px;
   margin: 10px;
 }
 
 .tile {
   margin: 1rem;
-  background-color: gray;
+  background-color: rgb(128, 128, 128, 50%);
+}
+
+#Rrrrrrice0303 .tile {
+  background-color: rgba(142, 142, 146, 0.8);
+}
+
+#YUJIfantasia .profile {
+  background-color: rgb(199, 199, 204);
+}
+
+#YUJIfantasia .profile a {
+  background-color: rgb(199, 199, 204);
+}
+
+#YUJIfantasia .profile h1 {
+  background-color: rgb(199, 199, 204);
 }
 
 .tile p {
   text-align: center;
 }
 
+#footer {
+  text-align: center;
+  margin: 2rem;
+}
