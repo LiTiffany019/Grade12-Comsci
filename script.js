@@ -5,6 +5,14 @@ const getTMDBData = async (url) => {
 };
 
 const createMovieTile = (id, poster, title, date, description) => {
+  try {
+    const movieDisplay = document.getElementById("movieDisplay");
+    movieDisplay.remove();
+  } catch (error) {
+    const movieDisplay = document.createElement("div");
+    movieDisplay.setAttribute("id", "movieDisplay);");
+  }
+  
   const tile = document.createElement("div");
   const details = document.createElement("div");
   const img = document.createElement("img");
@@ -38,11 +46,13 @@ const button = document.getElementById("button");
 button.addEventListener("click", async () => {
   console.log(movieSelect.value);
 
+  
+
   const movieSearch = await getTMDBData(
     `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${movieSelect.value}&include_adult=false`
   );
 
-  let firstResult = movieSearch.results[0]; /////////////////////////
+  let firstResult = movieSearch.results[0];
 
   const selectedMovieData = await getTMDBData(
     `https://api.themoviedb.org/3/movie/${firstResult.id}?api_key=${TMDB_API_KEY}&language=en-US`
@@ -58,17 +68,11 @@ button.addEventListener("click", async () => {
     firstResult.release_date,
     firstResult.overview
   );
-
-  // movieSearch.results[0] = (movie) => {
-  //   const tile = createMovieTile(
-  //     movie.id,
-  //     movie.poster_path,
-  //     movie.title,
-  //     movie.release_date,
-  //     movie.overview
-  //   );
-  movieInfo.appendChild(tile);
+  
+  const movieDisplay = document.getElementById("movieDisplay");
+  movieDisplay.appendChild(tile);
 });
+
 //   const trailer = trailerData.results.filter((trailer) => {
 //     return trailer.type === "Trailer";
 //   });
