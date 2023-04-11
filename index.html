@@ -18,16 +18,17 @@
   <body>
     <header>
       <form>
-        <select name="movies" id="movies">
-          
+        <select name="movie" id="movieSelect">
+          <option value="Jaws" id="Jaws">Jaws</option>
+          <option value="Spiderman Far From Home">Spiderman Far From Home</option>
+          <option value="Iron Man 2">Iron Man 2</option>
         </select>
+        <button id="button" type="button">Get</button>
       </form>
-
+      <div id="movieInfo"></div>
     </header>
 
-    <script defer src="./script.js"></script>
-    <script>
-      src = "https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js";
-    </script>
+    <script type="module" src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
