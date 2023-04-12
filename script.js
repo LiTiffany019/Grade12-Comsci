@@ -4,13 +4,17 @@ const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
 };
 
-const createMovieTile = (id, poster, title, date, runtime, description) => {
+const createMovieTile = (id, poster, title, date, vote_average, runtime, description) => {
   const tile = document.createElement("div");
 
   const details = document.createElement("div");
+
   const img = document.createElement("img");
   const movieTitle = document.createElement("h1");
+  // const movieGenres = document.createElement("div");
+  // movieGenres.innerHTML = genres[0];
   const dateReleased = document.createElement("h2");
+  const movieRating = document.createElement("h2"); 
   const duration = document.createElement("h3");
   const movieDescription = document.createElement("h4");
   const trailerButton = document.createElement("button");
@@ -18,16 +22,21 @@ const createMovieTile = (id, poster, title, date, runtime, description) => {
   tile.classList.add("tile");
   img.src = `https://image.tmdb.org/t/p/w500/${poster}`;
   movieTitle.innerText = title;
+  // movieGenres.innerText = genres;
   dateReleased.innerText = date;
+  movieRating.innerText = vote_average;
   duration.innerText = "Movie duration: " + runtime + " minutes";
   movieDescription.innerText = description;
   trailerButton.innerText = "Trailer";
 
   details.append(movieTitle);
+  // details.append(movieGenres);
   details.append(dateReleased);
+  details.append(movieRating);
   details.append(duration);
   details.append(movieDescription);
 
+  console.log(tile);
   tile.append(img);
   tile.append(details);
   tile.append(trailerButton);
@@ -70,12 +79,7 @@ getMovieButton.addEventListener("click", async () => {
   movieDisplay.replaceChildren(tile);
 });
 
-// const trailer = trailerData.results.filter((trailer) => {
-//   return trailer.type === "Trailer";
-// });
-
-//   !trailer.length
-//     //show an h1 that says sorry no trailer
-// })
-
 //jaws: 578 spiderm: 429617 ironman2: 10138 avatar: 76600 Shrek: 808 puss:315162 super mario: 502356 httyd: 166428 up: 14160 star wars: 11
+
+//filter for genres ?
+//country of origin?
