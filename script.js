@@ -4,81 +4,78 @@ const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
 };
 
-const createMovieTile = (id, poster, title, date, description) => {
-//   try {
-//     const movieDisplay = document.getElementById("movieDisplay");
-//     movieDisplay.remove();
-//   } catch (error) {
-//     const movieDisplay = document.createElement("div");
-//     movieDisplay.setAttribute("id", "movieDisplay);");
-//   }
-  
+const createMovieTile = (id, poster, title, date, runtime, description) => {
   const tile = document.createElement("div");
+
   const details = document.createElement("div");
   const img = document.createElement("img");
-  const h1 = document.createElement("h1");
-  const h3 = document.createElement("h3");
-  const h4 = document.createElement("h4");
+  const movieTitle = document.createElement("h1");
+  const dateReleased = document.createElement("h2");
+  const duration = document.createElement("h3");
+  const movieDescription = document.createElement("h4");
   const trailerButton = document.createElement("button");
 
   tile.classList.add("tile");
   img.src = `https://image.tmdb.org/t/p/w500/${poster}`;
-  h1.innerText = title;
-  h3.innerText = date;
-  h4.innerText = description;
+  movieTitle.innerText = title;
+  dateReleased.innerText = date;
+  duration.innerText = "Movie duration: " + runtime + " minutes";
+  movieDescription.innerText = description;
   trailerButton.innerText = "Trailer";
 
-  // let movieSelect = document.getElementById("movieSelect");
-
-  details.append(h1);
-  details.append(h3);
-  details.append(h4);
+  details.append(movieTitle);
+  details.append(dateReleased);
+  details.append(duration);
+  details.append(movieDescription);
 
   tile.append(img);
   tile.append(details);
   tile.append(trailerButton);
 
+  trailerButton.addEventListener("click", async () => {
+    const trailerData = await getTMDBData(
+      `https://api.themoviedb.org/3/movie/${movieSelect.value}/videos?api_key=${TMDB_API_KEY}&language=en-US`
+    );
+
+    const trailer = trailerData.results.filter((trailer) => {
+      return trailer.type === "Trailer";
+    });
+    console.log(trailer);
+    !trailer.length
+      ? alert("There are no trailors for this film.")
+      : window.open(`https://www.youtube.com/watch?v=${trailer.at(0).key}`);
+  });
+
   return tile;
 };
 
-const button = document.getElementById("button");
+let movieSelect = document.getElementById("movieSelect");
+const getMovieButton = document.getElementById("button");
 
-button.addEventListener("click", async () => {
-  console.log(movieSelect.value);
-
-  
-
-  const movieSearch = await getTMDBData(
-    `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${movieSelect.value}&include_adult=false`
+getMovieButton.addEventListener("click", async () => {
+  const movieData = await getTMDBData(
+    `https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
   );
-
-  let firstResult = movieSearch.results[0];
-
-  const selectedMovieData = await getTMDBData(
-    `https://api.themoviedb.org/3/movie/${firstResult.id}?api_key=${TMDB_API_KEY}&language=en-US`
-  );
-
-  console.log(firstResult.id);
-  console.log(selectedMovieData);
+  console.log(movieData);
 
   const tile = createMovieTile(
-    firstResult.id,
-    firstResult.poster_path,
-    firstResult.title,
-    firstResult.release_date,
-    firstResult.overview
+    movieData.id,
+    movieData.poster_path,
+    movieData.title,
+    movieData.release_date,
+    movieData.runtime,
+    movieData.overview
   );
-  
-//   const movieDisplay = document.getElementById("movieDisplay");
-  movieDisplay.appendChild(tile);
+
+  movieDisplay.replaceChildren(tile);
 });
 
-//   const trailer = trailerData.results.filter((trailer) => {
-//     return trailer.type === "Trailer";
-//   });
+// const trailer = trailerData.results.filter((trailer) => {
+//   return trailer.type === "Trailer";
+// });
 
 //   !trailer.length
 //     //show an h1 that says sorry no trailer
 // })
 
-// return tile;
+//jaws: 578 spiderm: 429617 ironman2: 10138 avatar: 76600 Shrek: 808 puss:315162 super mario: 502356 httyd: 166428 up: 14160 star wars: 11
