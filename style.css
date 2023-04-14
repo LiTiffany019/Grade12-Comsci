@@ -10,11 +10,9 @@ script {
 }
 
 form {
-  padding: 2rem;
+  padding: 3rem;
   text-align: center;
   background-color: rgb(9, 19, 68);
-  justify-content: center;
-  align-items: center;
 }
 
 option {
@@ -41,8 +39,9 @@ option {
 
 .tile {
   display: flex;
-  /* width: 55rem; */
   padding: 1rem;
+  margin: 10vw;
+  margin-top: 5vw;
 }
 
 .tile img {
