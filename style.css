@@ -1,13 +1,76 @@
 * {
   padding: 0;
   margin: 0;
-  background-color: gray;
+  background-color: rgb(23, 33, 85);
+  box-sizing: border-box;
 }
 
-header h1 {
+script {
+  display: none;
+}
+
+form {
+  padding: 2rem;
   text-align: center;
+  background-color: rgb(9, 19, 68);
+  justify-content: center;
+  align-items: center;
+}
+
+option {
+  background-color: grey;
+}
+
+#instruction {
+  background-color: rgb(9, 19, 68);
+  padding-bottom: 1rem;
+  color: white;
+}
+
+#movieSelect {
+  background-color: grey;
+  border-color: white;
+}
+
+#getButton {
+  background-color: grey;
+  border-color: white;
+}
+
+/* /////////////////////// */
+
+.tile {
+  display: flex;
+  /* width: 55rem; */
+  padding: 1rem;
+}
+
+.tile img {
+  height: 40rem;
+  padding: 1rem;
+  background-color: darkgray;
 }
 
 .tile h1 {
-  background-color: aquamarine;
+  padding: 0.5rem;
+  margin: 1rem;
+  color: white;
+}
+
+.tile h3 {
+  padding: 0.5rem;
+  color: white;
+  margin: 1rem;
+}
+
+.tile h4 {
+  line-height: 2;
+  color: white;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+.tile button {
+  background-color: grey;
+  margin-left: 1.5rem;
 }

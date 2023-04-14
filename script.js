@@ -4,57 +4,70 @@ const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
 };
 
-const createMovieTile = (id, poster, title, date, rating, genres, runtime, collection, description) => {
+const createMovieTile = (
+  id,
+  poster,
+  title,
+  date,
+  rating,
+  genres,
+  runtime,
+  collection,
+  description,
+  language
+) => {
   const tile = document.createElement("div");
-
   const details = document.createElement("div");
 
   const img = document.createElement("img");
   const movieTitle = document.createElement("h1");
-  const dateReleased = document.createElement("h2");
-  const movieRating = document.createElement("h3"); 
-  const movieGenres = document.createElement("div");///////////////
+  const dateReleased = document.createElement("h3");
+  const movieRating = document.createElement("h3");
+  const movieGenres = document.createElement("h3");
   const duration = document.createElement("h3");
   const movieCollection = document.createElement("h3");
   const movieDescription = document.createElement("h4");
+  const movieLanguage = document.createElement("h3");
   const trailerButton = document.createElement("button");
 
   tile.classList.add("tile");
+  details.classList.add("details");
+
   img.src = `https://image.tmdb.org/t/p/w500/${poster}`;
   movieTitle.innerText = title;
-  
-    let genresArray = [];
-    for (let i = 0; i < genres.length; i++) {
-      genresArray[i] = ` ${genres.at(i).name}`;
-      console.log(genresArray);
-    }
-  
-    movieGenres.innerText = "Genre(s): " + genresArray;
-
-  dateReleased.innerText = date;
+  dateReleased.innerText = `Date released: ${date}`;
   movieRating.innerText = "Rating: " + rating + "/10";
   duration.innerText = "Movie duration: " + runtime + " minutes";
-  
-  !collection
-    ?movieCollection.innerText = "This movie is currently not part of a collection."
-    :movieCollection.innerText = collection;
-  
-  
-  movieDescription.innerText = description;
+  movieDescription.innerText = `Description: 
+  ${description}`;
+  movieLanguage.innerText = `Original language: ${language}`;
   trailerButton.innerText = "Trailer";
 
+  //movie genres
+  let genresArray = [];
+  for (let i = 0; i < genres.length; i++) {
+    genresArray[i] = ` ${genres.at(i).name}`;
+  }
+  movieGenres.innerText = "Genre(s): " + genresArray;
+
+  //collection
+  !collection
+    ? (movieCollection.innerText =
+        "This movie is currently not part of a collection.")
+    : (movieCollection.innerText = `This movie belongs to the: ${collection.name}`);
+
   details.append(movieTitle);
-  details.append(movieGenres);/////////////////////////
+  details.append(trailerButton);
+  details.append(movieGenres);
+  details.append(movieLanguage);
   details.append(dateReleased);
   details.append(movieRating);
   details.append(duration);
   details.append(movieCollection);
   details.append(movieDescription);
 
-  console.log(tile);
   tile.append(img);
   tile.append(details);
-  tile.append(trailerButton);
 
   trailerButton.addEventListener("click", async () => {
     const trailerData = await getTMDBData(
@@ -64,19 +77,17 @@ const createMovieTile = (id, poster, title, date, rating, genres, runtime, colle
     const trailer = trailerData.results.filter((trailer) => {
       return trailer.type === "Trailer";
     });
-    console.log(trailer);
+
     !trailer.length
       ? alert("There are no trailors for this film.")
       : window.open(`https://www.youtube.com/watch?v=${trailer.at(0).key}`);
-      console.log(trailer.at(0).key);
-      console.log(trailer);
   });
 
   return tile;
 };
 
 let movieSelect = document.getElementById("movieSelect");
-const getMovieButton = document.getElementById("button");
+const getMovieButton = document.getElementById("getButton");
 
 getMovieButton.addEventListener("click", async () => {
   const movieData = await getTMDBData(
@@ -84,39 +95,19 @@ getMovieButton.addEventListener("click", async () => {
   );
   console.log(movieData);
 
-  // let genresArray = [];
-  // for (let i = 0; i < movieData.genres.length; i++) {
-  //   genresArray = movieData.genres.at(i).name;
-  //   //console.log[movieData.genres.at(i).name];
-  //   console.log(genresArray);
-  // }
   const tile = createMovieTile(
     movieData.id,
     movieData.poster_path,
     movieData.title,
     movieData.release_date,
     movieData.vote_average,
-    movieData.genres,///////////////
+    movieData.genres,
     movieData.runtime,
-    movieData.genresArray,
-    movieData.overview
+    movieData.belongs_to_collection,
+    movieData.overview,
+    movieData.original_language
   );
-    //console.log(movieData.belongs_to_collection);////returns object object
-    
-    // movieData.genres.filter((genres) => {
-    //   // return genres.type === "genre";
-    // })
 
-
-    // for (let i = 0; i < movieData.genres.length; i++) {
-    //   // console.log(movieData.genres.at(i).name);
-    //   const genresArray = [movieData.genres.at(i).name];
-    // }
-    
-
+  console.log(tile);
   movieDisplay.replaceChildren(tile);
 });
-
-//jaws: 578 spiderm: 429617 ironman2: 10138 avatar: 76600 Shrek: 808 puss:315162 super mario: 502356 httyd: 166428 up: 14160 star wars: 11
-
-//country of origin?
