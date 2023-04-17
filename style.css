@@ -70,6 +70,9 @@ option {
 }
 
 .tile button {
-  background-color: grey;
+  background-color: rgb(209, 203, 203);
   margin-left: 1.5rem;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }

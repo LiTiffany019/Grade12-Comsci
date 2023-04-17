@@ -41,7 +41,7 @@ const createMovieTile = (
   movieDescription.innerText = `Description: 
   ${description}`;
   movieLanguage.innerText = `Original language: ${language}`;
-  trailerButton.innerText = "Trailer";
+  trailerButton.innerText = "Movie Trailer";
 
   //movie genres
   let genresArray = [];
@@ -56,18 +56,18 @@ const createMovieTile = (
         "This movie is currently not part of a collection.")
     : (movieCollection.innerText = `This movie belongs to the: ${collection.name}`);
 
-  details.append(movieTitle);
-  details.append(trailerButton);
-  details.append(movieGenres);
-  details.append(movieLanguage);
-  details.append(dateReleased);
-  details.append(movieRating);
-  details.append(duration);
-  details.append(movieCollection);
-  details.append(movieDescription);
+  details.append(
+    movieTitle,
+    trailerButton,
+    movieGenres,
+    movieLanguage,
+    dateReleased,
+    duration,
+    movieCollection,
+    movieDescription
+  );
 
-  tile.append(img);
-  tile.append(details);
+  tile.append(img, details);
 
   trailerButton.addEventListener("click", async () => {
     const trailerData = await getTMDBData(
