@@ -16,7 +16,7 @@ form {
 }
 
 option {
-  background-color: grey;
+  background-color: rgb(170, 170, 170);
 }
 
 #instruction {
@@ -26,50 +26,50 @@ option {
 }
 
 #movieSelect {
-  background-color: grey;
+  background-color: rgb(170, 170, 170);
   border-color: white;
 }
 
 #getButton {
-  background-color: grey;
+  background-color: rgb(170, 170, 170);
   border-color: white;
 }
 
 /* /////////////////////// */
 
-.tile {
+.movieTile {
   display: flex;
   padding: 1rem;
   margin: 10vw;
   margin-top: 5vw;
 }
 
-.tile img {
+.movieTile img {
   height: 40rem;
   padding: 1rem;
   background-color: darkgray;
 }
 
-.tile h1 {
+.movieTile h1 {
   padding: 0.5rem;
   margin: 1rem;
   color: white;
 }
 
-.tile h3 {
+.movieTile h3 {
   padding: 0.5rem;
   color: white;
   margin: 1rem;
 }
 
-.tile h4 {
+.movieTile h4 {
   line-height: 2;
   color: white;
   padding: 0.5rem;
   margin: 1rem;
 }
 
-.tile button {
+.movieTile button {
   background-color: rgb(209, 203, 203);
   margin-left: 1.5rem;
   padding: 1rem;

@@ -16,7 +16,7 @@ const createMovieTile = (
   description,
   language
 ) => {
-  const tile = document.createElement("div");
+  const movieTile = document.createElement("div");
   const details = document.createElement("div");
 
   const img = document.createElement("img");
@@ -30,14 +30,19 @@ const createMovieTile = (
   const movieLanguage = document.createElement("h3");
   const trailerButton = document.createElement("button");
 
-  tile.classList.add("tile");
+  let durationHours = runtime / 60;
+  durationHours = Math.floor(durationHours);
+  let durationMinutes = runtime % 60;
+
+  movieTile.classList.add("movieTile");
   details.classList.add("details");
 
   img.src = `https://image.tmdb.org/t/p/w500/${poster}`;
   movieTitle.innerText = title;
   dateReleased.innerText = `Date released: ${date}`;
   movieRating.innerText = "Rating: " + rating + "/10";
-  duration.innerText = "Movie duration: " + runtime + " minutes";
+  duration.innerText =
+    "Movie duration: " + durationHours + " hrs " + durationMinutes + " min";
   movieDescription.innerText = `Description: 
   ${description}`;
   movieLanguage.innerText = `Original language: ${language}`;
@@ -67,7 +72,7 @@ const createMovieTile = (
     movieDescription
   );
 
-  tile.append(img, details);
+  movieTile.append(img, details);
 
   trailerButton.addEventListener("click", async () => {
     const trailerData = await getTMDBData(
@@ -83,7 +88,7 @@ const createMovieTile = (
       : window.open(`https://www.youtube.com/watch?v=${trailer.at(0).key}`);
   });
 
-  return tile;
+  return movieTile;
 };
 
 let movieSelect = document.getElementById("movieSelect");
@@ -95,7 +100,7 @@ getMovieButton.addEventListener("click", async () => {
   );
   console.log(movieData);
 
-  const tile = createMovieTile(
+  const movieTile = createMovieTile(
     movieData.id,
     movieData.poster_path,
     movieData.title,
@@ -108,6 +113,6 @@ getMovieButton.addEventListener("click", async () => {
     movieData.original_language
   );
 
-  console.log(tile);
-  movieDisplay.replaceChildren(tile);
+  console.log(movieTile);
+  movieDisplay.replaceChildren(movieTile);
 });
