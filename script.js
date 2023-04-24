@@ -19,14 +19,14 @@ const createMovieTile = (
   const movieTile = document.createElement("div");
   const details = document.createElement("div");
 
-  const img = document.createElement("img");
+  const moviePoster = document.createElement("img");
   const movieTitle = document.createElement("h1");
   const dateReleased = document.createElement("h3");
   const movieRating = document.createElement("h3");
   const movieGenres = document.createElement("h3");
   const duration = document.createElement("h3");
   const movieCollection = document.createElement("h3");
-  const movieDescription = document.createElement("h4");
+  const movieDescription = document.createElement("h3");
   const movieLanguage = document.createElement("h3");
   const trailerButton = document.createElement("button");
 
@@ -37,7 +37,7 @@ const createMovieTile = (
   movieTile.classList.add("movieTile");
   details.classList.add("details");
 
-  img.src = `https://image.tmdb.org/t/p/w500/${poster}`;
+  moviePoster.src = `https://image.tmdb.org/t/p/w500/${poster}`;
   movieTitle.innerText = title;
   dateReleased.innerText = `Date released: ${date}`;
   movieRating.innerText = "Rating: " + rating + "/10";
@@ -65,14 +65,14 @@ const createMovieTile = (
     movieTitle,
     trailerButton,
     movieGenres,
-    movieLanguage,
     dateReleased,
+    movieLanguage,
     duration,
     movieCollection,
     movieDescription
   );
 
-  movieTile.append(img, details);
+  movieTile.append(moviePoster, details);
 
   trailerButton.addEventListener("click", async () => {
     const trailerData = await getTMDBData(

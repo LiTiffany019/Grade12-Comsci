@@ -13,6 +13,7 @@ form {
   padding: 3rem;
   text-align: center;
   background-color: rgb(9, 19, 68);
+  font-size: 150%;
 }
 
 option {
@@ -28,11 +29,15 @@ option {
 #movieSelect {
   background-color: rgb(170, 170, 170);
   border-color: white;
+  font-size: 60%;
+  padding: 0.15rem;
 }
 
 #getButton {
   background-color: rgb(170, 170, 170);
   border-color: white;
+  font-size: 60%;
+  padding: 0.15rem;
 }
 
 /* /////////////////////// */
@@ -52,17 +57,14 @@ option {
 
 .movieTile h1 {
   padding: 0.5rem;
+  padding-top: 0;
   margin: 1rem;
+  margin-top: 0;
   color: white;
+  font-size: 300%;
 }
 
 .movieTile h3 {
-  padding: 0.5rem;
-  color: white;
-  margin: 1rem;
-}
-
-.movieTile h4 {
   line-height: 2;
   color: white;
   padding: 0.5rem;
