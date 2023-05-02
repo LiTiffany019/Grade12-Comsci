@@ -1,14 +1,23 @@
 <script setup>
-import { Ref } from "vue";
-// import axios from "axios";
-// import {TMDB_API_KEY} from key.js
+import { ref } from "vue";
+import axios from "axios";
+// import TMDB_API_KEY from ".key.js"
 
-// //`https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
-// console.log(4);
+const TMDB_API_KEY = "8d1f5e1c273227990b9ea9ae53a22f33";
 
-// const getMovie = async () => {
-//     return (await axios.get())
-// };
+//`https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
+console.log(4);
+
+const getMovie = async (url) => {
+    const movieData = await axios.get(url).data
+};
+
+//need a null value or smth
+
+// const getMovie = () =>{
+//   console.log("got movie");
+//   console.log(movieSelect.value);
+// }
 
 </script>
 
@@ -27,7 +36,7 @@ import { Ref } from "vue";
       <option value="11">Star Wars</option>
     </select>
 
-    <!-- <button @click="getMovie()">Get</button> -->
+    <button @click="getMovie()">Get</button>
   </header>
 </template>
 
