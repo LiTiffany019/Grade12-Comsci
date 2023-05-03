@@ -1,11 +1,11 @@
 <script setup>
 
-import movie from './components/movie.vue';
+import Movie from './components/Movie.vue';
 </script>
 
 <template>
  <div id="movieTile">
-   <movie/>
+   <Movie/>
  </div>  
 </template>
 

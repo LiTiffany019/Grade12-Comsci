@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-// import TMDB_API_KEY from src/key.js
-
 
 //`https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
 
@@ -10,14 +8,18 @@ const movieSelect = ref("");
 const movieData = ref(null);
 
 const getMovie = async () => {
-  // const movieID = movieSelect.value;
-  movieData.value = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
-  ).data;
-  //why doesnt it work when i put .data ?????????????
+  console.log(import.meta.env.VITE_TMDB_API_KEY);
+  movieData.value = (await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US&adult=false`
+  )).data;
+
   console.log(movieData.value);
 };
 
+let durationHrs = movieData.runtime / 60;
+let durationMins = movieData.runtime % 60;
+// let durationTotal = durationHrs + " hrs" + durationMins + " min";
+//work on formatting of this
 </script>
 
 <template>
@@ -38,12 +40,17 @@ const getMovie = async () => {
     <button @click="getMovie">Get</button>
   </header>
 
-  <div v-if="movieData" class="movieTile">
-    <p>{{ movieData.original_title }}</p>
-    <p>hi</p>
+  <section v-if="movieData" class="movieTile">
+    <h1>{{ movieData.original_title }}</h1>
+    <h3>{{ movieData.original_language }}</h3>
+    <h4>{{ movieData.overview }}</h4>
+    <h3>{{ movieData.release_date }}</h3>
+    <h4>{{ durationHrs }} hrs {{ durationMins }} mins</h4>
+    <h4>{{ movieData.vote_average }} / 10</h4>
+
     <!-- <img src="" alt=""> use v-bind shortcut :-->
     
-  </div>
+  </section>
 </template>
 
 <style scoped></style>
