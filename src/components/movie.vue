@@ -1,28 +1,28 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-// import TMDB_API_KEY from ".key.js"
+// import TMDB_API_KEY from src/key.js
 
 
 //`https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
-console.log(4);
 
-const getMovie = async (url) => {
-    const movieData = await axios.get(url).data
+const movieSelect = ref("");
+const movieData = ref(null);
+
+const getMovie = async () => {
+  // const movieID = movieSelect.value;
+  movieData.value = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
+  ).data;
+  //why doesnt it work when i put .data ?????????????
+  console.log(movieData.value);
 };
-
-//need a null value or smth
-
-// const getMovie = () =>{
-//   console.log("got movie");
-//   console.log(movieSelect.value);
-// }
 
 </script>
 
 <template>
   <header>
-    <select id="movieSelect">
+    <select v-model="movieSelect">
       <option value="508947">Turning Red</option>
       <option value="429617">Spiderman Far From Home</option>
       <option value="10138">Iron Man 2</option>
@@ -35,8 +35,17 @@ const getMovie = async (url) => {
       <option value="11">Star Wars</option>
     </select>
 
-    <button @click="getMovie()">Get</button>
+    <button @click="getMovie">Get</button>
   </header>
+
+  <div v-if="movieData" class="movieTile">
+    <p>{{ movieData.original_title }}</p>
+    <p>hi</p>
+    <!-- <img src="" alt=""> use v-bind shortcut :-->
+    
+  </div>
 </template>
 
 <style scoped></style>
+
+
