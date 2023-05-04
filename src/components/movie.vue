@@ -42,13 +42,13 @@ let durationMins = movieData.runtime % 60;
 
   <section v-if="movieData" class="movieTile">
     <h1>{{ movieData.original_title }}</h1>
-    <h3>{{ movieData.original_language }}</h3>
-    <h4>{{ movieData.overview }}</h4>
-    <h3>{{ movieData.release_date }}</h3>
+    <h3>Original Language: {{ movieData.original_language }}</h3>
+    <h4>Description: {{ movieData.overview }}</h4>
+    <h3>Date of Release: {{ movieData.release_date }}</h3>
     <h4>{{ durationHrs }} hrs {{ durationMins }} mins</h4>
     <h4>{{ movieData.vote_average }} / 10</h4>
 
-    <!-- <img src="" alt=""> use v-bind shortcut :-->
+    <img src=" `https://image.tmdb.org/t/p/w500/${}`" alt="">
     
   </section>
 </template>
