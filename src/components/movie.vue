@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import axios from "axios";
 
-
 //`https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
 
 const movieSelect = ref("");
@@ -10,17 +9,30 @@ const movieData = ref(null);
 
 const getMovie = async () => {
   console.log(import.meta.env.VITE_TMDB_API_KEY);
-  movieData.value = (await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US&adult=false`
-  )).data;
+  movieData.value = (
+    await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${
+        import.meta.env.VITE_TMDB_API_KEY
+      }&language=en-US&adult=false&append_to_response=videos`
+    )
+  ).data;
 
   console.log(movieData.value);
+};
+
+const trailer = movieData.videos.results.filter((trailer) => {
+  return trailer.type === "Trailer".at(0).key
+  
+});
+console.log(trailer);
+const playTrailor = (url) => {
+  window.open(url, _blank);
 };
 
 let durationHrs = ref();
 let durationMins = ref();
 
-durationHrs =  movieData.runtime / 60;
+durationHrs = movieData.runtime / 60;
 console.log(durationHrs); //gives NaN
 </script>
 
@@ -47,18 +59,19 @@ console.log(durationHrs); //gives NaN
     <h3>Original Language: {{ movieData.original_language }}</h3>
     <h4>Description: {{ movieData.overview }}</h4>
     <h3>Date of Release: {{ movieData.release_date }}</h3>
-    <h4>Movie duration: {{ movieData.runtime / 60}} </h4>
+    <h4>Movie duration: {{ movieData.runtime / 60 }}</h4>
     <!-- <h4>Movie duration: {{ movieData.runtime}} </h4>
     <h4>Movie duration: {{ movieData.runtime % 60}} </h4> -->
     <h4>Movie Rating: {{ movieData.vote_average }} / 10</h4>
-    <img :src=" `https://image.tmdb.org/t/p/w500/${movieData.poster_path}`" alt="">
-    <button>Watch Trailor</button>
-    
+    <img
+      :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
+      alt=""
+    />
+    <button role="link" @click="playTrailor">Watch Trailor</button>
   </section>
 </template>
 
 <style scoped></style>
-
 
 <!-- {{ durationHrs }} hrs {{ durationMins }} mins -->
 <!-- v-model="durationHrs" -->
