@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import axios from "axios";
 
+
 //`https://api.themoviedb.org/3/movie/${movieSelect.value}?api_key=${TMDB_API_KEY}&language=en-US`
 
 const movieSelect = ref("");
@@ -16,10 +17,11 @@ const getMovie = async () => {
   console.log(movieData.value);
 };
 
-let durationHrs = movieData.runtime / 60;
-let durationMins = movieData.runtime % 60;
-// let durationTotal = durationHrs + " hrs" + durationMins + " min";
-//work on formatting of this
+let durationHrs = ref();
+let durationMins = ref();
+
+durationHrs =  movieData.runtime / 60;
+console.log(durationHrs); //gives NaN
 </script>
 
 <template>
@@ -45,10 +47,12 @@ let durationMins = movieData.runtime % 60;
     <h3>Original Language: {{ movieData.original_language }}</h3>
     <h4>Description: {{ movieData.overview }}</h4>
     <h3>Date of Release: {{ movieData.release_date }}</h3>
-    <h4>{{ durationHrs }} hrs {{ durationMins }} mins</h4>
-    <h4>{{ movieData.vote_average }} / 10</h4>
-
-    <img src=" `https://image.tmdb.org/t/p/w500/${}`" alt="">
+    <h4>Movie duration: {{ movieData.runtime / 60}} </h4>
+    <!-- <h4>Movie duration: {{ movieData.runtime}} </h4>
+    <h4>Movie duration: {{ movieData.runtime % 60}} </h4> -->
+    <h4>Movie Rating: {{ movieData.vote_average }} / 10</h4>
+    <img :src=" `https://image.tmdb.org/t/p/w500/${movieData.poster_path}`" alt="">
+    <button>Watch Trailor</button>
     
   </section>
 </template>
@@ -56,3 +60,5 @@ let durationMins = movieData.runtime % 60;
 <style scoped></style>
 
 
+<!-- {{ durationHrs }} hrs {{ durationMins }} mins -->
+<!-- v-model="durationHrs" -->
