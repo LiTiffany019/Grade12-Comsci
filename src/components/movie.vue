@@ -20,32 +20,30 @@ const getMovieData = async () => {
     )
   ).data;
 
-////trailer
+  ////trailer
 
-  trailerData = movieData.value.videos.results.filter((trailer) => trailer.type === "Trailer").at(0);
+  trailerData = movieData.value.videos.results
+    .filter((trailer) => trailer.type === "Trailer")
+    .at(0);
   console.log(movieData.value);
-  // console.log(trailerData);
 
-  durationHrs = movieData.runtime / 60
+  durationHrs = movieData.runtime / 60;
   console.log(durationHrs); //gives NaN
   console.log(movieData.runtime / 60);
 
   // const movieGenres = movieData.value.genres.name;
   // console.log(movieGenres);
-
 };
 
 const playTrailer = (trailerKey) => {
   window.open(`https://www.youtube.com/embed/${trailerKey}`);
-  
 };
-
-
 </script>
 
 <template>
   <header id="header">
-    <select v-model="movieSelect">
+    <h2 id="instructions">Select a Movie From the Following Menu:</h2>
+    <select v-model="movieSelect" id="form">
       <option value="508947">Turning Red</option>
       <option value="429617">Spiderman Far From Home</option>
       <option value="10138">Iron Man 2</option>
@@ -58,54 +56,104 @@ const playTrailer = (trailerKey) => {
       <option value="11">Star Wars</option>
     </select>
 
-    <button @click="getMovieData">Get</button>
+    <button @click="getMovieData" id="getButton">Get</button>
   </header>
 
-  <section v-if="movieData" class="movieTile">
-    <h1>{{ movieData.original_title }}</h1>
-    <h3 class="title">Original Language: {{ movieData.original_language }}</h3>
-    <h4 class="description">Description: {{ movieData.overview }}</h4>
-    <h3 class="releaseDate">Date of Release: {{ movieData.release_date }}</h3>
-    
-    <h4 class="duration">Movie duration: {{ movieData.runtime}} {{ movieData.runtime % 60}} mins</h4>
-    <h4 v-bind="durationHrs"> Movie duration: hours {{ movieData.runtime / 60 }} {{ durationHrs }}</h4>
-    
-    <h4 class="rating">Movie Rating: {{ movieData.vote_average }} / 10</h4>
-    <!-- <h4 class="genres" v-for="(name) in items">Genres: {{ name }}</h4> -->
-    <h4>{{ movieData.genres[0].name }}</h4>
-    <h4 v-if="!movieData.belongs_to_collection" class="collection">This movie does not belong to a collection</h4>
-    <h4 v-else class="collection">This movie belongs to the {{ movieData.belongs_to_collection.name }} </h4>
-
+  <section v-if="movieData" id="movieTile">
     <img
       :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
       alt=""
     />
-    <button id="trailerButton" @click="playTrailer(trailerData.key)">Watch Trailer</button>
+    <div id="movieInfoText">
+      <h1 id="title" class="infoText">{{ movieData.original_title }}</h1>
+      <h3 class="infoText">
+        Original Language: {{ movieData.original_language }}
+      </h3>
+      <h4 id="description" class="infoText">
+        Description: {{ movieData.overview }}
+      </h4>
+      <h3 id="releaseDate" class="infoText">
+        Date of Release: {{ movieData.release_date }}
+      </h3>
 
+      <h4 id="duration" class="infoText">
+        Movie duration: {{ movieData.runtime }}
+        {{ movieData.runtime % 60 }} mins
+      </h4>
+      <h4 v-bind="durationHrs" class="infoText">
+        Movie duration: hours {{ movieData.runtime / 60 }} {{ durationHrs }}
+      </h4>
 
+      <h4 id="rating" class="infoText">
+        Movie Rating: {{ movieData.vote_average }} / 10
+      </h4>
+      <!-- <h4 class="genres" v-for="(name) in items">Genres: {{ name }}</h4> -->
+      <h4 class="infoText">{{ movieData.genres[0].name }}</h4>
+      <h4
+        v-if="!movieData.belongs_to_collection"
+        id="collection"
+        class="infoText"
+      >
+        This movie does not belong to a collection
+      </h4>
+      <h4 v-else id="collection" class="infoText">
+        This movie belongs to the {{ movieData.belongs_to_collection.name }}
+      </h4>
+      <button
+        id="trailerButton"
+        @click="playTrailer(trailerData.key)"
+        class="infoText"
+      >
+        Watch Trailer
+      </button>
+    </div>
   </section>
 </template>
 
 <style scoped>
-  * {
-    background-color: rgb(23, 33, 85);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: white;
-  }
+* {
+  background-color: rgb(23, 33, 85);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
 
-  #header {
-    text-align: center;
-  }
+#header {
+  padding: 1.5rem;
+  text-align: center;
+}
 
-  /*  */
-  #movieTile {
-    display: flex;
-    padding: 1rem;
+#form,
+#getButton {
+  font-size: 125%;
+}
 
-  }
+#instructions {
+  padding: 1rem;
+}
 
+/*  */
+#movieTile {
+  display: flex;
+  gap: 1rem;
+  margin: 10vw;
+  margin-top: 5vw;
+}
+
+.infoText {
+  padding: 1rem;
+}
+
+#title {
+  padding-top: 2rem;
+}
+
+#trailerButton {
+  margin-left: 1rem;
+  font-size: 100%;
+  padding: 0.75rem;
+}
 </style>
 
 <!-- {{ durationHrs }} hrs {{ durationMins }} mins -->
