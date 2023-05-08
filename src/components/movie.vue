@@ -44,7 +44,7 @@ const playTrailer = (trailerKey) => {
 </script>
 
 <template>
-  <header>
+  <header id="header">
     <select v-model="movieSelect">
       <option value="508947">Turning Red</option>
       <option value="429617">Spiderman Far From Home</option>
@@ -86,7 +86,27 @@ const playTrailer = (trailerKey) => {
   </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+  * {
+    background-color: rgb(23, 33, 85);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+
+  #header {
+    text-align: center;
+  }
+
+  /*  */
+  #movieTile {
+    display: flex;
+    padding: 1rem;
+
+  }
+
+</style>
 
 <!-- {{ durationHrs }} hrs {{ durationMins }} mins -->
 <!-- v-model="durationHrs" -->
