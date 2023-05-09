@@ -83,7 +83,7 @@ const playTrailer = (trailerKey) => {
         Movie Rating: {{ movieData.vote_average }} / 10
       </h4>
       <!-- <h4 class="genres" v-for="(name) in items">Genres: {{ name }}</h4> -->
-      <h4 class="infoText">{{ movieData.genres[0].name }}</h4>
+      <h4 class="infoText">Movie Genre: {{ movieData.genres[0].name }}</h4>
       <h4
         v-if="!movieData.belongs_to_collection"
         id="collection"
