@@ -27,9 +27,9 @@ const getMovieData = async () => {
     .at(0);
   console.log(movieData.value);
 
-  durationHrs = movieData.runtime / 60;
-  console.log(durationHrs); //gives NaN
-  console.log(movieData.runtime / 60);
+  ////movie duration
+  durationHrs = Math.floor(movieData.value.runtime / 60);
+  durationMins = movieData.value.runtime % 60;
 
   // const movieGenres = movieData.value.genres.name;
   // console.log(movieGenres);
@@ -72,16 +72,11 @@ const playTrailer = (trailerKey) => {
       <h4 id="description" class="infoText">
         Description: {{ movieData.overview }}
       </h4>
-      <h3 id="releaseDate" class="infoText">
+      <h4 id="releaseDate" class="infoText">
         Date of Release: {{ movieData.release_date }}
-      </h3>
-
-      <h4 id="duration" class="infoText">
-        Movie duration: {{ movieData.runtime }}
-        {{ movieData.runtime % 60 }} mins
       </h4>
       <h4 v-bind="durationHrs" class="infoText">
-        Movie duration: hours {{ movieData.runtime / 60 }} {{ durationHrs }}
+        Movie duration: {{ durationHrs }} hrs {{ durationMins }} mins
       </h4>
 
       <h4 id="rating" class="infoText">
@@ -143,6 +138,7 @@ const playTrailer = (trailerKey) => {
 
 .infoText {
   padding: 1rem;
+  line-height: 1.5rem;
 }
 
 #title {
