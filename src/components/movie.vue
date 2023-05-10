@@ -30,9 +30,6 @@ const getMovieData = async () => {
   ////movie duration
   durationHrs = Math.floor(movieData.value.runtime / 60);
   durationMins = movieData.value.runtime % 60;
-
-  // const movieGenres = movieData.value.genres.name;
-  // console.log(movieGenres);
 };
 
 const playTrailer = (trailerKey) => {
@@ -66,23 +63,23 @@ const playTrailer = (trailerKey) => {
     />
     <div id="movieInfoText">
       <h1 id="title" class="infoText">{{ movieData.original_title }}</h1>
-      <h3 class="infoText">
-        Original Language: {{ movieData.original_language }}
-      </h3>
-      <h4 id="description" class="infoText">
-        Description: {{ movieData.overview }}
-      </h4>
       <h4 id="releaseDate" class="infoText">
         Date of Release: {{ movieData.release_date }}
       </h4>
       <h4 v-bind="durationHrs" class="infoText">
         Movie duration: {{ durationHrs }} hrs {{ durationMins }} mins
       </h4>
+      <h4 id="description" class="infoText">
+        Description: {{ movieData.overview }}
+      </h4>
+      <h4 class="infoText">
+        Original Language: {{ movieData.original_language }}
+      </h4>
 
       <h4 id="rating" class="infoText">
         Movie Rating: {{ movieData.vote_average }} / 10
       </h4>
-      <!-- <h4 class="genres" v-for="(name) in items">Genres: {{ name }}</h4> -->
+
       <h4 class="infoText">Movie Genre: {{ movieData.genres[0].name }}</h4>
       <h4
         v-if="!movieData.belongs_to_collection"
@@ -132,8 +129,8 @@ const playTrailer = (trailerKey) => {
 #movieTile {
   display: flex;
   gap: 1rem;
-  margin: 10vw;
-  margin-top: 5vw;
+  border: 10vw;
+  border-top: 5vw;
 }
 
 .infoText {
