@@ -53,48 +53,55 @@ const playTrailer = (trailerKey) => {
       <option value="11">Star Wars</option>
     </select>
 
-    <button @click="getMovieData" id="getButton">Get</button>
+    <button @click="getMovieData" id="get-button">Get</button>
   </header>
 
-  <section v-if="movieData" id="movieTile">
+  <section v-if="movieData" id="movie-tile">
     <img
       :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
       alt=""
     />
-    <div id="movieInfoText">
-      <h1 id="title" class="infoText">{{ movieData.original_title }}</h1>
-      <h4 id="releaseDate" class="infoText">
+    <div id="movie-info-text">
+      <h1 id="title" class="info-text">{{ movieData.original_title }}</h1>
+
+      <h3 id="release-date" class="info-text">
         Date of Release: {{ movieData.release_date }}
-      </h4>
-      <h4 v-bind="durationHrs" class="infoText">
+      </h3>
+
+      <h4 v-bind="durationHrs" class="info-text">
         Movie duration: {{ durationHrs }} hrs {{ durationMins }} mins
       </h4>
-      <h4 id="description" class="infoText">
+
+      <h4 id="description" class="info-text">
         Description: {{ movieData.overview }}
       </h4>
-      <h4 class="infoText">
+
+      <h4 class="info-text">
         Original Language: {{ movieData.original_language }}
       </h4>
 
-      <h4 id="rating" class="infoText">
+      <h4 id="rating" class="info-text">
         Movie Rating: {{ movieData.vote_average }} / 10
       </h4>
 
-      <h4 class="infoText">Movie Genre: {{ movieData.genres[0].name }}</h4>
+      <h4 class="info-text">Movie Genre: {{ movieData.genres[0].name }}</h4>
+
       <h4
         v-if="!movieData.belongs_to_collection"
         id="collection"
-        class="infoText"
+        class="info-text"
       >
         This movie does not belong to a collection
       </h4>
-      <h4 v-else id="collection" class="infoText">
+
+      <h4 v-else id="collection" class="info-text">
         This movie belongs to the {{ movieData.belongs_to_collection.name }}
       </h4>
+
       <button
-        id="trailerButton"
+        id="trailer-button"
         @click="playTrailer(trailerData.key)"
-        class="infoText"
+        class="info-text"
       >
         Watch Trailer
       </button>
@@ -107,7 +114,7 @@ const playTrailer = (trailerKey) => {
   background-color: rgb(23, 33, 85);
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0; 
   color: white;
 }
 
@@ -117,8 +124,9 @@ const playTrailer = (trailerKey) => {
 }
 
 #form,
-#getButton {
-  font-size: 125%;
+#get-button {
+  font-size: 110%;
+  padding: 0.25rem;
 }
 
 #instructions {
@@ -126,14 +134,14 @@ const playTrailer = (trailerKey) => {
 }
 
 /*  */
-#movieTile {
+#movie-tile {
   display: flex;
   gap: 1rem;
-  border: 10vw;
-  border-top: 5vw;
+  margin: 10vw;
+  margin-top: 5vw;
 }
 
-.infoText {
+.info-text {
   padding: 1rem;
   line-height: 1.5rem;
 }
@@ -142,12 +150,23 @@ const playTrailer = (trailerKey) => {
   padding-top: 2rem;
 }
 
-#trailerButton {
+#trailer-button {
   margin-left: 1rem;
+  margin-top: 0.5rem;
   font-size: 100%;
   padding: 0.75rem;
 }
-</style>
 
-<!-- {{ durationHrs }} hrs {{ durationMins }} mins -->
-<!-- v-model="durationHrs" -->
+#description {
+  width: 90%;
+}
+
+#title {
+  font-size: 175%;
+  margin-top: 1rem;
+}
+
+img {
+  padding: 1.5rem;
+}
+</style>
