@@ -1,7 +1,20 @@
 <script setup></script>
 
 <template>
-<h1>hero</h1>
+    <div class="tile">
+        <section class="main-text">
+            <h1>HERO</h1>
+            <h3>HERO SUBTEXT</h3>
+        </section>
+        <!-- add smth else here later -->
+    </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.tile {
+    text-align: center;
+    padding: 30vw;
+    background-color: grey;
+}
+</style>

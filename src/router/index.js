@@ -19,7 +19,7 @@ const router = createRouter({
             path: "/purchase", 
             component: PurchaseView
         }
-    ]
+    ],
 });
 
 export default router;

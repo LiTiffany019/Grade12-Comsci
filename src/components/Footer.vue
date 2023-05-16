@@ -1,7 +1,16 @@
 <script setup></script>
 
 <template>
-    <h1>footer</h1>
+    <footer>
+        <h1>footer</h1>
+    </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+footer {
+    text-align: center;
+    padding: 5vw;
+    padding-bottom: 5vw;
+}
+</style>

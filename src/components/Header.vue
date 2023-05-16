@@ -1,7 +1,26 @@
-<script setup></script>
+<script setup>
+import { useRouter} from "vue-router";
+
+const router = useRouter();
+const login = () => {
+    router.push("/login");
+};
+</script>
 
 <template>
-    <h1>Header</h1>
+    <header class="company-name">
+        <h1>Totally Legit Movie Inc.</h1>
+    </header>
+    
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.company-name {
+    text-align: center;
+    padding: 3rem;
+    background-color: blue;
+    font-size: 125%;
+
+}
+</style>
