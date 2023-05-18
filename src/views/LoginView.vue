@@ -4,7 +4,12 @@
 </script>
 
 <template>
-    <h1>login</h1>
+    <div class="login-container">
+        <form @submit.prevent="login()">
+            <input type="submit" value="login">
+            <input type="password" value="login"> 
+        </form>
+    </div>
 </template>
 
 <style scoped></style>

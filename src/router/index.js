@@ -13,6 +13,7 @@ const router = createRouter({
         }, 
         {
             path: "/Login",
+            //capital L? what's the proper naming convention
             component: LoginView
         }, 
         {
