@@ -12,5 +12,6 @@ footer {
     text-align: center;
     padding: 5vw;
     padding-bottom: 5vw;
+    background-color: rgb(45, 45, 155);
 }
 </style>

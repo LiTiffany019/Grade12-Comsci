@@ -20,7 +20,7 @@ const GoToLogin = () => {
 .header-container {
     text-align: center;
     padding: 3rem;
-    background-color: blue;
+    background-color: rgb(45, 45, 155);
     font-size: 125%;
 }
 

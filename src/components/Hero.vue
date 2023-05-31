@@ -15,6 +15,6 @@
 .tile {
     text-align: center;
     padding: 30vw;
-    background-color: grey;
+    background-color: lightgray;
 }
 </style>
