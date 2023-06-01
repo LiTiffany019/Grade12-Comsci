@@ -32,9 +32,8 @@ const login = () => {
 
 <style scoped>
 .login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: rgb(45, 45, 155);
+  margin-bottom: auto;
 }
 
 form {
