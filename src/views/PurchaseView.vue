@@ -16,28 +16,27 @@ const toggleModal = () => {
 };
 
 // https://api.themoviedb.org/3/trending/movie/day?
-const getMovies = (
-  await axios.get(`https://api.themoviedb.org/3/trending/movie/day?`, {
-    params: {
-      api_key: import.meta.env.VITE_TMDB_API_KEY,
-      region: "US",
-      language: "en",
-      include_adult: false,
-    },
-  })
-).data;
+// const getMovies = (
+//   await axios.get(`https://api.themoviedb.org/3/trending/movie/day?`, {
+//     params: {
+//       api_key: import.meta.env.VITE_TMDB_API_KEY,
+//       region: "US",
+//       language: "en",
+//       include_adult: false,
+//     },
+//   })
+// ).data;
 
-console.log(getMovies);
-console.log(getMovies.results);
+// console.log(movieData);
 
-movieStore.movies = getMovies.results.map((movie) => {
-    return {
-        id: movie.id,
-        poster: movie.poster_path,
-    }
-});
+// movieStore.movies = getMovies.results.map((movie) => {
+//     return {
+//         id: movie.id,
+//         poster: movie.poster_path,
+//     }
+// });
 
-console.log(movieStore.id);
+// console.log(movieStore.id);
 </script>
 
 <template>

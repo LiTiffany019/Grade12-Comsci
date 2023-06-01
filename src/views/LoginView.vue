@@ -19,10 +19,11 @@ const login = () => {
 
 <template>
   <div class="login-container">
+    <h2 class="text">Please login:</h2>
     <form @submit.prevent="login()">
-      <input type="submit" value="login" />
       <input type="text" v-model="username" placeholder="username" />
       <input type="password" v-model="password" placeholder="password" />
+      <input type="submit" value="login" />
     </form>
     <h3 v-if="wrongInfo" class="incorrect">
       Incorrect username or password, please try again.
@@ -33,13 +34,21 @@ const login = () => {
 <style scoped>
 .login-container {
   background-color: rgb(45, 45, 155);
-  margin-bottom: auto;
+  /* height: 100vh; */
+  display: flex;
+
 }
 
+.text {
+  color: white;
+
+}
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 1rem;
+  transform: translateY(500%);
+  
 }
 </style>
