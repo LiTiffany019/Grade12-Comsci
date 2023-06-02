@@ -20,8 +20,8 @@ const goToCart = () => {
 };
 
 // https://api.themoviedb.org/3/trending/movie/day?
-const getMovies = (
-  await axios.get(`https://api.themoviedb.org/3/trending/movie/day?`, {
+const movies = (
+  await axios.get("https://api.themoviedb.org/3/movie/popular", {
     params: {
       api_key: import.meta.env.VITE_TMDB_API_KEY,
       region: "US",
@@ -31,14 +31,14 @@ const getMovies = (
   })
 ).data;
 
-console.log(getMovies);
-
-movieStore.movies = getMovies.results.map((movie) => {
+console.log(movies);
+movieStore.movies = movies.results.map((movie) => {
   return {
     id: movie.id,
     poster: movie.poster_path,
-  };
+  }
 });
+
 
 console.log(movieStore.id);
 </script>

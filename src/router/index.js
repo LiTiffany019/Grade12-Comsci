@@ -4,7 +4,7 @@ import LoginView from "../views/LoginView.vue";
 import PurchaseView from "../views/PurchaseView.vue";
 import CartView from "../views/CartView.vue";
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
@@ -25,5 +25,3 @@ const router = createRouter({
     },
   ],
 });
-
-export default router;
