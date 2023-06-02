@@ -40,7 +40,7 @@ movieStore.movies = movies.results.map((movie) => {
 });
 
 
-console.log(movieStore.id);
+console.log(movieStore.movies);
 </script>
 
 <template>
