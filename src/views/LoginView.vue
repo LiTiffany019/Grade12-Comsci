@@ -52,5 +52,6 @@ const login = () => {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  color: white;
 }
 </style>

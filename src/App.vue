@@ -1,7 +1,4 @@
-<script setup>
-
-</script>
-
+<script setup></script>
 
 <template>
   <div>
@@ -9,9 +6,4 @@
   </div>
 </template>
 
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
-</style>
+<style scoped></style>
