@@ -45,4 +45,8 @@ const toggleModal = () => {
   <h2>asdad</h2>
 </template>
 
-<style scoped></style>
+<style scoped>
+* {
+  background-color: rgb(32, 32, 32);
+}
+</style>

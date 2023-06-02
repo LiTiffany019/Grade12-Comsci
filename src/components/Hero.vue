@@ -7,10 +7,13 @@
       <h3>HERO SUBTEXT</h3>
     </div>
 
-    <img
-      src="https://pbs.twimg.com/media/Fxjd6DjaUAA3Yqa?format=jpg&name=small"
-      alt="image"
-    />
+    <div class="image-container">
+      <img
+        src="https://pbs.twimg.com/media/Fxjd6DjaUAA3Yqa?format=jpg&name=small"
+        alt="image"
+      />
+      <p>Placeholder image^^</p>
+    </div>
     <!-- add smth else here later -->
   </section>
 </template>
@@ -21,7 +24,7 @@
   justify-content: space-around;
   height: 90vh;
   align-items: center;
-  background-color: lightgray;
+  background-color: rgb(104, 104, 104);
 }
 
 .main-text {
@@ -29,6 +32,6 @@
 }
 
 img {
-    height: 300px;
+  height: 300px;
 }
 </style>

@@ -5,7 +5,7 @@
     <div class="background-info">
       <h4>Founded in 1915</h4>
       <h4>
-        Formally known as Legit Movies, Not Pirated is a non-profit organization
+        Formally known as Legit Movies, Totally Legic Movie Inc. is a non-profit organization
         specializing in streaming movies.
       </h4>
     </div>
@@ -25,12 +25,12 @@
   padding: 1rem;
   align-items: center;
   justify-content: space-around;
-  background-color: rgb(45, 45, 155);
+  background-color: rgb(32, 32, 32);
   color: white;
   line-height: 200%;
 }
 
 .background-info {
-  width: 40vw;
+  width: 45vw;
 }
 </style>
