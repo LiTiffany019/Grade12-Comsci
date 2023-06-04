@@ -31,7 +31,6 @@ const movies = (
   })
 ).data;
 
-console.log(movies);
 movieStore.movies = movies.results.map((movie) => {
   return {
     id: movie.id,
