@@ -1,9 +1,9 @@
 <script setup></script>
 
 <template>
-  <div>
+  <Suspense>
     <RouterView />
-  </div>
+  </Suspense>
 </template>
 
 <style scoped></style>

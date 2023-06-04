@@ -20,6 +20,8 @@ const goToCart = () => {
 };
 
 // https://api.themoviedb.org/3/trending/movie/day?
+
+
 const movies = (
   await axios.get("https://api.themoviedb.org/3/movie/popular", {
     params: {
@@ -43,16 +45,17 @@ console.log(movieStore.movies);
 </script>
 
 <template>
-  <Modal />
   <div class="container">
-    <div class="movies">
+    <h1>aklsdja</h1>
+    <!-- <div class="movies">
       <h2>Movie placeholder num1</h2>
       <h2>Movie placeholder num2</h2>
-    </div>
-
-    <section class="buttons">
+    </div> -->
+    
+    <!-- <section class="buttons">
       <button id="cart-button" @click="goToCart()">View Cart</button>
-    </section>
+    </section> -->
+    <!-- <Modal /> -->
   </div>
 </template>
 

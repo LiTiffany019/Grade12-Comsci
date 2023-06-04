@@ -10,7 +10,7 @@ const wrongInfo = ref(false);
 
 const login = () => {
   if (username.value === "tmdb" && password.value === "movies") {
-    router.push("/Purchase");
+    router.push("/purchase");
   } else {
     wrongInfo.value = true;
   }
