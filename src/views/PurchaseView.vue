@@ -43,7 +43,7 @@ console.log(movieStore.movies);
 
 <template>
   <section class="options">
-    <h1 class="text">Trending Movies: </h1>
+    <h1 class="text">Trending Movies:</h1>
     <button id="cart-button" @click="goToCart()">View Cart</button>
   </section>
 
@@ -87,7 +87,6 @@ img {
   padding: 2rem;
   display: flex;
   justify-content: space-between;
-  
 }
 
 #cart-button {

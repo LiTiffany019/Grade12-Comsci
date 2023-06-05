@@ -5,8 +5,8 @@
     <div class="background-info">
       <h4>Founded in 1915</h4>
       <h4>
-        Formally known as Legit Movies, Totally Legic Movie Inc. is a non-profit organization
-        specializing in streaming movies.
+        Formally known as Legit Movies, Totally Legic Movie Inc. is a non-profit
+        organization specializing in streaming movies.
       </h4>
     </div>
 

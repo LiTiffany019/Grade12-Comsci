@@ -77,7 +77,7 @@ const movie = (
 }
 
 img {
-  width: 35%;
+  width: 30%;
   margin-top: 0.5rem;
   border-style: solid;
   border-color: white;

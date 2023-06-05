@@ -27,10 +27,9 @@ const GoToLogin = () => {
 }
 
 #brand {
-    color: white;
-    text-align: center;
-    padding-left: 5rem;
-
+  color: white;
+  text-align: center;
+  padding-left: 5rem;
 }
 button {
   padding: 0.5rem;

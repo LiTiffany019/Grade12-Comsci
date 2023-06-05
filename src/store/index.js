@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useMovieStore = defineStore('store', {
+export const useMovieStore = defineStore("store", {
   state: () => ({
     movies: [],
     cart: [],
@@ -11,6 +11,6 @@ export const useMovieStore = defineStore('store', {
         poster,
         title,
       });
-    }
-  }
+    },
+  },
 });

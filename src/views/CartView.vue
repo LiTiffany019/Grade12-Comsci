@@ -7,19 +7,19 @@ const router = useRouter();
 
 const goBack = () => {
   router.push("/purchase");
-}
+};
 </script>
 
 <template>
   <div class="cart-page">
     <div class="page-container">
       <section class="misc">
-          <div class="text">
-        <h1>Your Cart</h1>
-        <br />
-        <h3>You selected the following movies:</h3>
-      </div>
-      <button @click="goBack()" id="back-button">Go back to purchase</button>
+        <div class="text">
+          <h1>Your Cart</h1>
+          <br />
+          <h3>You selected the following movies:</h3>
+        </div>
+        <button @click="goBack()" id="back-button">Go back to purchase</button>
       </section>
 
       <div class="movie-container">
@@ -45,7 +45,6 @@ const goBack = () => {
   padding: 1rem;
   text-align: center;
 }
-
 
 .movie-container {
   display: flex;

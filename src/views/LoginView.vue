@@ -42,7 +42,6 @@ const login = () => {
   gap: 2rem;
   padding: 20%;
   padding-bottom: 0;
- 
 }
 
 .text {
@@ -50,7 +49,8 @@ const login = () => {
   text-align: center;
 }
 
-.form-info, form {
+.form-info,
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
