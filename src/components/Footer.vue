@@ -25,7 +25,7 @@
   padding: 1rem;
   align-items: center;
   justify-content: space-around;
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(26, 26, 26);
   color: white;
   line-height: 200%;
 }

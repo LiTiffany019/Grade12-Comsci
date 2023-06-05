@@ -20,8 +20,10 @@ const GoToLogin = () => {
   justify-content: space-between;
   text-align: center;
   padding: 3rem;
-  background-color: black;
+  background-color: rgb(8, 8, 8);
   font-size: 125%;
+  border-bottom: solid;
+  border-color: white;
 }
 
 #brand {

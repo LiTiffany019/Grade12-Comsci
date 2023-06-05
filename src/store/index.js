@@ -11,7 +11,6 @@ export const useMovieStore = defineStore('store', {
         poster,
         title,
       });
-      console.log(this.cart);
     }
   }
 });

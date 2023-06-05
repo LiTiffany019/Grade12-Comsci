@@ -2,36 +2,42 @@
 
 <template>
   <section class="tile">
-    <div class="main-text">
-      <h1>HERO</h1>
-      <h3>HERO SUBTEXT</h3>
-    </div>
+    <div class="text">
+      <h1>
+        A totally legitimate movie source that cares about you and your movie
+        nights
+      </h1>
+      <h3>
+        Why watch movies in theatres when you can sit in your room and
+        watch the latest movies all by youself
+      </h3>
 
-    <div class="image-container">
-      <img
-        src="https://pbs.twimg.com/media/Fxjd6DjaUAA3Yqa?format=jpg&name=small"
-        alt="image"
-      />
-      <p>Placeholder image^^</p>
+      <p> Officially sponsered by absolutely nobody</p>
     </div>
-    <!-- add smth else here later -->
   </section>
 </template>
 
 <style scoped>
 .tile {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   height: 90vh;
   align-items: center;
-  background-color: rgb(104, 104, 104);
+  background-image: linear-gradient(to bottom, black, rgb(32, 32, 32));
+  background-image: url("https://easyhometheater.net/wp-content/uploads/2022/10/photo-1579036095242-fe07594274ca.jpeg-1024x791.webp");
+
 }
 
-.main-text {
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   text-align: center;
+  padding-top: 10rem;
+  width: 40%;
+  color: white;
 }
 
-img {
-  height: 300px;
-}
+
 </style>

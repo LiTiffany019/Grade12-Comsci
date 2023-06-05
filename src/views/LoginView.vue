@@ -35,11 +35,14 @@ const login = () => {
 
 <style scoped>
 .login-container {
-  background-color: rgb(32, 32, 32);
-  height: 100vh;
+  background-color: rgb(10, 10, 10);
+  height: 75vh;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 20%;
+  padding-bottom: 0;
+ 
 }
 
 .text {
