@@ -1,17 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { getDoc, doc } from "@firebase/firestore";
-
-const email = ref("");
-const passwordOne = ref("");
-const passwordTwo = ref("");
 
 const router = useRouter();
 
@@ -19,44 +8,13 @@ const username = ref("");
 const password = ref("");
 const wrongInfo = ref(false);
 
-const registerViaEmail = async () => {
-  if (passwordOne.value !== passwordTwo.value) {
-    alert("Brozzzzz..... Yer Paswerdz not coolz!");
-    return;
-  }
-
-  const { user } = await createUserWithEmailAndPassword(
-    auth,
-    email.value,
-    passwordOne.value
-  );
-  store.user = user;
-  router.push("/purchase");
-};
-
-const loginViaEmail = async () => {
-  try {
-    const { user } = await signInWithEmailAndPassword(
-      auth,
-      email.value,
-      passwordOne.value
-    );
-    store.user = user;
+const login = () => {
+  if (username.value === "tmdb" && password.value === "movies") {
     router.push("/purchase");
-  } catch (error) {
-    console.log(error);
+  } else {
+    wrongInfo.value = true;
   }
 };
-
-const registerViaGoogle = async () => {
-  const provider = new GoogleAuthProvider();
-  const { user } = await signInWithPopup(auth, provider);
-  store.user = user;
-  const { cart } = (await getDoc(doc(firestore, "carts", user.email))).data();
-  store.cart = cart;
-  router.push("/purchase");
-};
-
 </script>
 
 <template>
