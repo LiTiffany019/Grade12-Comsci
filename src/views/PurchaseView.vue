@@ -9,7 +9,14 @@ const movieStore = useMovieStore();
 const router = useRouter();
 const selectedId = ref(0);
 
+const genre = ref(28);
+const search = ref("");
+const movies = ref(null);
+const page = ref(1);
+const currentURL = ref("");
+const totalPages = ref(0);
 const showModal = ref(false);
+const selectedRecordId = ref(0);
 
 const toggleModal = (id) => {
   showModal.value = !showModal.value;
@@ -20,7 +27,7 @@ const goToCart = () => {
   router.push("/Cart");
 };
 
-const movies = (
+const getMovies = (
   await axios.get("https://api.themoviedb.org/3/trending/movie/day?", {
     params: {
       api_key: import.meta.env.VITE_TMDB_API_KEY,
@@ -37,6 +44,9 @@ movieStore.movies = movies.results.map((movie) => {
     poster: movie.poster_path,
   };
 });
+
+totalPages.value = movies.value.total_pages;
+currentURL.value = url;
 
 console.log(movieStore.movies);
 </script>
