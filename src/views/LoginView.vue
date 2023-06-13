@@ -56,12 +56,14 @@ const loginViaEmail = async () => {
 const registerViaGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const { user } = await signInWithPopup(auth, provider);
+  const firestoreCart = await getDoc(doc(firestore, "carts", user.email));
   store.user = user;
-  const { cart } = (await getDoc(doc(firestore, "carts", user.email))).data();
-  store.cart = cart;
+  if (firestoreCart.exists()) {
+    const { cart } = firestoreCart.data();
+    store.cart = cart;
+  }
   router.push("/purchase");
-  console.log(store.cart.data); ///////////
-};
+  };
 </script>
 
 <template>

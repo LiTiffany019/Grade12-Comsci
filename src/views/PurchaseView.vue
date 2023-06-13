@@ -63,9 +63,6 @@ const getTMDBData = async (url, options, page) => {
   currentURL.value = url;
 };
 
-// totalPages.value = movies.value.total_pages;
-// currentURL.value = url;
-
 // console.log(movieStore.movies);
 </script>
 
