@@ -50,7 +50,7 @@ const loginViaEmail = async () => {
   } catch (error) {
     console.log(error);
   }
-  console.log(store.user);///////////
+  console.log(store.user); ///////////
 };
 
 const registerViaGoogle = async () => {
@@ -60,7 +60,7 @@ const registerViaGoogle = async () => {
   const { cart } = (await getDoc(doc(firestore, "carts", user.email))).data();
   store.cart = cart;
   router.push("/purchase");
-  console.log(store.cart.data);///////////
+  console.log(store.cart.data); ///////////
 };
 </script>
 
@@ -69,6 +69,19 @@ const registerViaGoogle = async () => {
     <h2 class="text">Please login:</h2>
 
     <section class="form-info">
+      <div id="login-via-email">
+        <h1>Login via Email</h1>
+        <form class="login" @submit.prevent="loginViaEmail()">
+          <input v-model="email" type="email" placeholder="Email" />
+          <input v-model="passwordOne" type="password" placeholder="Password" />
+          <input type="submit" value="Login" />
+        </form>
+
+        <!-- <h3 v-if="wrongInfo" class="incorrect">
+        Incorrect username or password, please try again.
+      </h3> -->
+      </div>
+
       <div id="reg-via-email">
         <h1>Register via Email</h1>
         <form @submit.prevent="registerViaEmail()">
@@ -87,18 +100,7 @@ const registerViaGoogle = async () => {
           <!-- <p v-if="wrongPass"> {{ wrongPass }}</p> -->
         </form>
       </div>
-      <div id="login-via-email">
-        <h1>Login via Email</h1>
-        <form class="login" @submit.prevent="loginViaEmail()">
-          <input v-model="email" type="email" placeholder="Email" />
-          <input v-model="passwordOne" type="password" placeholder="Password" />
-          <input type="submit" value="Login" />
-        </form>
-
-        <!-- <h3 v-if="wrongInfo" class="incorrect">
-        Incorrect username or password, please try again.
-      </h3> -->
-      </div>
+      
       <div id="reg-via-google">
         <h1>register via Google</h1>
         <button @click="registerViaGoogle()">Google</button>
