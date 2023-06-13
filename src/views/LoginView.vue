@@ -58,6 +58,7 @@ const registerViaGoogle = async () => {
   const { user } = await signInWithPopup(auth, provider);
   const firestoreCart = await getDoc(doc(firestore, "carts", user.email));
   store.user = user;
+  console.log(store.user);
   if (firestoreCart.exists()) {
     const { cart } = firestoreCart.data();
     store.cart = cart;
