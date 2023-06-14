@@ -8,7 +8,7 @@ const router = useRouter();
 const genre = ref(28);
 const search = ref("");
 const movies = ref(null);
-const page = ref(1);
+const page = ref(0);
 const currentURL = ref("");
 const totalPages = ref(0);
 const showModal = ref(false);
@@ -35,7 +35,7 @@ const getTMDBData = async (url, options, page) => {
   totalPages.value = movies.value.total_pages;
   currentURL.value = url;
 
-  // console.log(currentURL);
+  console.log(page);
 };
 
 // console.log(movieStore.movies);
@@ -54,7 +54,8 @@ const getTMDBData = async (url, options, page) => {
           @click="
             getTMDBData('https://api.themoviedb.org/3/search/movie', {
               query: search,
-            })
+            }),
+              (page = 1)
           "
           id="search-button"
         >
@@ -70,11 +71,13 @@ const getTMDBData = async (url, options, page) => {
           <option value="12">Adventure</option>
           <option value="14">Fantasy</option>
         </select>
+
         <button
           @click="
             getTMDBData('https://api.themoviedb.org/3/discover/movie', {
               with_genres: genre,
-            })
+            }),
+              (page = 1)
           "
           id="get-movies-button"
         >
@@ -89,7 +92,14 @@ const getTMDBData = async (url, options, page) => {
 
         <button
           @click="
-            getTMDBData(currentURL, { query: search }, page === 1 ? 1 : page--)
+            getTMDBData(
+              currentURL,
+              {
+                query: search,
+                with_genres: genre,
+              },
+              page === 1 ? 1 : page--
+            )
           "
           class="page-button"
         >
@@ -100,7 +110,10 @@ const getTMDBData = async (url, options, page) => {
           @click="
             getTMDBData(
               currentURL,
-              { query: search },
+              {
+                query: search,
+                with_genres: genre,
+              },
               page >= totalPages ? totalPages : page++
             )
           "
@@ -112,7 +125,7 @@ const getTMDBData = async (url, options, page) => {
     </section>
     <div v-if="movies" class="tiles">
       <div v-for="movie in movies.results" :key="movie.id" class="tile">
-        <p> {{ page}}</p>
+        <p>{{ page }}</p>
         <img
           :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
           @click="toggleModal(movie.id)"
