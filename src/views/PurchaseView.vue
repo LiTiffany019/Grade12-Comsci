@@ -1,30 +1,3 @@
-
-<!-- <style scoped>
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-img {
-  width: 200px;
-}
-
-.pagination {
-  display: flex;
-  gap: 1rem;
-}
-
-.controls {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-</style>  -->
-
-
-
-
-
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
@@ -67,49 +40,86 @@ const getTMDBData = async (url, options, page) => {
 </script>
 
 <template>
-  <section class="options">
-    <div>
-      <input type="search" placeholder="Enter search items" v-model="search" />
-      <button
-        @click="
-          getTMDBData('https://api.themoviedb.org/3/search/movie', {
-            query: search,
-          })
-        "
-      >
-        Search
-      </button>
-    </div>
-  </section>
-  <div>
-    <select v-model="genre">
-      <option value="28">Action</option>
-      <option value="10751">Family</option>
-      <option value="878">Science Fiction</option>
-      <option value="12">Adventure</option>
-      <option value="14">Fantasy</option>
-    </select>
-    <button
-      @click="
-        getTMDBData('https://api.themoviedb.org/3/discover/movie', {
-          with_genres: genre,
-        })
-      "
-    >
-      Get
-    </button>
-    <button @click="router.push('/cart')">Cart</button>
-  </div>
+  <div id="purchase-container">
+    <section class="options">
+      <div class="search">
+        <input
+          type="search"
+          placeholder="Enter search items"
+          v-model="search"
+        />
+        <button
+          @click="
+            getTMDBData('https://api.themoviedb.org/3/search/movie', {
+              query: search,
+            })
+          "
+          id="search-button"
+        >
+          Search
+        </button>
+      </div>
 
-  <div v-if="movies" class="tiles">
-    <div v-for="movie in movies.results" :key="movie.id" class="tile">
-      <img
-        :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-        @click="toggleModal(movie.id)"
-      />
+      <div class="select">
+        <select v-model="genre">
+          <option value="28">Action</option>
+          <option value="10751">Family</option>
+          <option value="878">Science Fiction</option>
+          <option value="12">Adventure</option>
+          <option value="14">Fantasy</option>
+        </select>
+        <button
+          @click="
+            getTMDBData('https://api.themoviedb.org/3/discover/movie', {
+              with_genres: genre,
+            })
+          "
+          id="get-movies-button"
+        >
+          Get
+        </button>
+        <button @click="router.push('/cart')" id="cart-button">Cart</button>
+      </div>
+
+      <p>{{ `Page ${page} of ${totalPages}` }}</p>
+      
+      <div class="pagination">
+        <button
+          @click="
+            getTMDBData(currentURL, { query: search }, page === 1 ? 1 : page--)
+          "
+        >
+          Prev
+        </button>
+      
+        <button
+          @click="
+            getTMDBData(
+              currentURL,
+              { query: search },
+              page >= totalPages ? totalPages : page++
+            )
+          "
+        >
+          Next
+        </button>
+        
+      </div>
+    </section>
+    <div v-if="movies" class="tiles">
+      <div v-for="movie in movies.results" :key="movie.id" class="tile">
+        <img
+          :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+          @click="toggleModal(movie.id)"
+        />
+      </div>
     </div>
+    <Modal
+      v-if="showModal"
+      :id="selectedRecordId"
+      @toggleModal="toggleModal()"
+    />
   </div>
-  <Modal v-if="showModal" :id="selectedRecordId" @toggleModal="toggleModal()" />
 </template>
 
 <style scoped>
@@ -119,34 +129,39 @@ const getTMDBData = async (url, options, page) => {
   padding: 0;
 }
 
-/* .container {
+#purchase-container {
   color: white;
   height: 100vh;
+}
+
+.tiles {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
-} */
+  grid-template-columns: repeat(4, 1fr);
+}
 
 img {
-  /* width: 70%;
+  width: 70%;
   margin: 1rem;
   border-style: solid;
   border-color: white;
-  border-radius: 1%; */
-
-  width: 100px;
+  border-radius: 1%;
 }
 
-.options,
 button,
 input,
 select {
-  /* padding: 2rem; */
-  display: flex;
-  justify-content: space-between;
   color: white;
+  padding: 0.25rem;
+  background-color: rgb(62, 62, 63);
+  
 }
 
+.options {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 1rem;
+}
 /* #cart-button {
   color: white;
   padding: 1rem;
@@ -154,3 +169,4 @@ select {
   background-color: rgb(70, 70, 70);
 } */
 </style>
+

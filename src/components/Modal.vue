@@ -29,7 +29,7 @@ const movie = (
             <h2>Date released: {{ movie.release_date }}</h2>
             <br />
             <button
-              @click="store.addToCart(movie.poster_path, movie.title)"
+              @click="store.addToCart(movie.poster_path, movie.title, movie.id)"
               id="buy-button"
             >
               Buy

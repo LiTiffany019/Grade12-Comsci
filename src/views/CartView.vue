@@ -5,6 +5,10 @@ import { useMovieStore } from "../store/index.js";
 const store = useMovieStore();
 const router = useRouter();
 
+const rmFromCart = (movie) => {
+  const index = store.cart.indexOf(movie);
+  store.rmFromCart(index);
+}
 
 const goBack = () => {
   router.push("/purchase");
@@ -20,14 +24,14 @@ const goBack = () => {
           <br />
           <h3>You selected the following movies:</h3>
         </div>
-        <button @click="goBack()" id="back-button">Go back to purchase</button>
+        <button @click="goBack()" id="back-button">Go back to purchase page</button>
       </section>
 
       <div class="movie-container">
         <div v-for="movie in store.cart" class="movie">
           <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster}`" />
           <h2 id="movie-title">{{ movie.title }}</h2>
-          <button @click="store.rmFromCart()">Remove from cart</button>
+          <button @click="rmFromCart(movie)">Remove from cart</button>
         </div>
       </div>
     </div>
