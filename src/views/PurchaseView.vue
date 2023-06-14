@@ -34,6 +34,8 @@ const getTMDBData = async (url, options, page) => {
   ).data;
   totalPages.value = movies.value.total_pages;
   currentURL.value = url;
+
+  // console.log(currentURL);
 };
 
 // console.log(movieStore.movies);
@@ -81,17 +83,19 @@ const getTMDBData = async (url, options, page) => {
         <button @click="router.push('/cart')" id="cart-button">Cart</button>
       </div>
 
-      <p>{{ `Page ${page} of ${totalPages}` }}</p>
-      
       <div class="pagination">
+        <p>{{ `Page ${page} of ${totalPages}` }}</p>
+        <br />
+
         <button
           @click="
             getTMDBData(currentURL, { query: search }, page === 1 ? 1 : page--)
           "
+          class="page-button"
         >
           Prev
         </button>
-      
+
         <button
           @click="
             getTMDBData(
@@ -100,14 +104,15 @@ const getTMDBData = async (url, options, page) => {
               page >= totalPages ? totalPages : page++
             )
           "
+          class="page-button"
         >
           Next
         </button>
-        
       </div>
     </section>
     <div v-if="movies" class="tiles">
       <div v-for="movie in movies.results" :key="movie.id" class="tile">
+        <p> {{ page}}</p>
         <img
           :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
           @click="toggleModal(movie.id)"
@@ -153,7 +158,6 @@ select {
   color: white;
   padding: 0.25rem;
   background-color: rgb(62, 62, 63);
-  
 }
 
 .options {
@@ -161,6 +165,12 @@ select {
   flex-direction: row-reverse;
   justify-content: space-between;
   padding: 1rem;
+  padding-top: 2rem;
+}
+
+.page-button {
+  margin: 1rem;
+  margin-left: 0;
 }
 /* #cart-button {
   color: white;
@@ -169,4 +179,3 @@ select {
   background-color: rgb(70, 70, 70);
 } */
 </style>
-
