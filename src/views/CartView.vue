@@ -8,7 +8,7 @@ const router = useRouter();
 const rmFromCart = (movie) => {
   const index = store.cart.indexOf(movie);
   store.rmFromCart(index);
-}
+};
 
 const goBack = () => {
   router.push("/purchase");
@@ -24,14 +24,20 @@ const goBack = () => {
           <br />
           <h3>You selected the following movies:</h3>
         </div>
-        <button @click="goBack()" id="back-button">Go back to purchase page</button>
+        <button @click="goBack()" id="back-button">
+          Go back to purchase page
+        </button>
       </section>
 
       <div class="movie-container">
-        <div v-for="movie in store.cart" class="movie">
+        <div v-for="movie in store.cart" class="tiles">
           <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster}`" />
-          <h2 id="movie-title">{{ movie.title }}</h2>
-          <button @click="rmFromCart(movie)">Remove from cart</button>
+          <div class="tile-text">
+            <h2 id="movie-title">{{ movie.title }}</h2>
+            <button @click="rmFromCart(movie)" id="rm-button">
+              Remove from cart
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -52,16 +58,20 @@ const goBack = () => {
   text-align: center;
 }
 
+#movie-title {
+  font-size: 130%;
+}
+
 .movie-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 img {
   width: 20vw;
 }
 
-.movie {
+.tiles {
   padding: 1rem;
   margin: 1rem;
 }
@@ -76,4 +86,15 @@ img {
   background-color: rgb(71, 71, 71);
   color: rgb(224, 224, 224);
 }
+
+.tile-text {
+  display: flex;
+  justify-content: center;
+}
+
+#rm-button {
+  height: 50%;
+  margin-top: 1rem;
+}
+
 </style>

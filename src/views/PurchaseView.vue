@@ -36,6 +36,7 @@ const getTMDBData = async (url, options, page) => {
   currentURL.value = url;
 
   console.log(page);
+  console.log(movies);
 };
 
 // console.log(movieStore.movies);
@@ -83,6 +84,7 @@ const getTMDBData = async (url, options, page) => {
         >
           Get
         </button>
+        
         <button @click="router.push('/cart')" id="cart-button">Cart</button>
       </div>
 
@@ -114,7 +116,7 @@ const getTMDBData = async (url, options, page) => {
                 query: search,
                 with_genres: genre,
               },
-              page >= totalPages ? totalPages : page++
+              (page >= totalPages ? totalPages : page++)
             )
           "
           class="page-button"

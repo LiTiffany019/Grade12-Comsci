@@ -16,16 +16,17 @@ import { getDoc, doc } from "@firebase/firestore";
 const email = ref("");
 const passwordOne = ref("");
 const passwordTwo = ref("");
+const loginEmail = ref("");
+const loginPass = ref("");
 const router = useRouter();
 const store = useMovieStore();
 
-const wrongPass = ref("");
-const wrongInfo = ref(false);
-
 const registerViaEmail = async () => {
+  try {
+
+ 
   if (passwordOne.value !== passwordTwo.value) {
-    alert("Brozzzzz..... Yer Paswerdz not coolz!");
-    // wrongPass.value = "Passwords do not match, please try again"; //////////////////////
+    alert("Passwords do not match, please try again");
     return;
   }
 
@@ -36,21 +37,23 @@ const registerViaEmail = async () => {
   );
   store.user = user;
   router.push("/purchase");
+} catch (error) {
+  alert("Password must be at least 6 characters long, please try again")
+}
 };
 
 const loginViaEmail = async () => {
   try {
     const { user } = await signInWithEmailAndPassword(
       auth,
-      email.value,
-      passwordOne.value
+      loginEmail.value,
+      loginPass.value
     );
     store.user = user;
     router.push("/purchase");
   } catch (error) {
-    console.log(error);
+    alert("Incorrect email or password, please try again");
   }
-  console.log(store.user); ///////////
 };
 
 const registerViaGoogle = async () => {
@@ -72,11 +75,12 @@ const registerViaGoogle = async () => {
     <h2 class="text">Please login:</h2>
 
     <section class="form-info">
+
       <div id="login-via-email">
         <h1>Login via Email</h1>
         <form class="login" @submit.prevent="loginViaEmail()">
-          <input v-model="email" type="email" placeholder="Email" />
-          <input v-model="passwordOne" type="password" placeholder="Password" />
+          <input v-model="loginEmail" type="email" placeholder="Email" />
+          <input v-model="loginPass" type="password" placeholder="Password" />
           <input type="submit" value="Login" />
         </form>
 
@@ -88,7 +92,7 @@ const registerViaGoogle = async () => {
       <div id="reg-via-email">
         <h1>Register via Email</h1>
         <form @submit.prevent="registerViaEmail()">
-          <input v-model="email" type="email" placeholder="email" />
+          <input v-model="email" type="email" placeholder="Email" />
           <input
             v-model="passwordOne"
             type="password"
@@ -105,8 +109,8 @@ const registerViaGoogle = async () => {
       </div>
       
       <div id="reg-via-google">
-        <h1>register via Google</h1>
-        <button @click="registerViaGoogle()">Google</button>
+        <h1>Register via Google</h1>
+        <button @click="registerViaGoogle()">Sign in with Google</button>
       </div>
     </section>
   </div>
@@ -135,5 +139,9 @@ form {
   align-items: center;
   gap: 1rem;
   color: white;
+}
+
+.form-info {
+  gap: 2rem;
 }
 </style>
