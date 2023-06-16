@@ -84,7 +84,7 @@ const getTMDBData = async (url, options, page) => {
         >
           Get
         </button>
-        
+
         <button @click="router.push('/cart')" id="cart-button">Cart</button>
       </div>
 
@@ -100,7 +100,7 @@ const getTMDBData = async (url, options, page) => {
                 query: search,
                 with_genres: genre,
               },
-              page === 1 ? 1 : page--
+              page === 1 ? 1 : --page
             )
           "
           class="page-button"
@@ -116,7 +116,7 @@ const getTMDBData = async (url, options, page) => {
                 query: search,
                 with_genres: genre,
               },
-              (page >= totalPages ? totalPages : page++)
+              page >= totalPages ? totalPages : ++page
             )
           "
           class="page-button"
@@ -127,7 +127,6 @@ const getTMDBData = async (url, options, page) => {
     </section>
     <div v-if="movies" class="tiles">
       <div v-for="movie in movies.results" :key="movie.id" class="tile">
-        <p>{{ page }}</p>
         <img
           :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
           @click="toggleModal(movie.id)"
