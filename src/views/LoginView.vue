@@ -23,23 +23,21 @@ const store = useMovieStore();
 
 const registerViaEmail = async () => {
   try {
+    if (passwordOne.value !== passwordTwo.value) {
+      alert("Passwords do not match, please try again");
+      return;
+    }
 
- 
-  if (passwordOne.value !== passwordTwo.value) {
-    alert("Passwords do not match, please try again");
-    return;
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      passwordOne.value
+    );
+    store.user = user;
+    router.push("/purchase");
+  } catch (error) {
+    alert("Password must be at least 6 characters long, please try again");
   }
-
-  const { user } = await createUserWithEmailAndPassword(
-    auth,
-    email.value,
-    passwordOne.value
-  );
-  store.user = user;
-  router.push("/purchase");
-} catch (error) {
-  alert("Password must be at least 6 characters long, please try again")
-}
 };
 
 const loginViaEmail = async () => {
@@ -67,7 +65,7 @@ const registerViaGoogle = async () => {
     store.cart = cart;
   }
   router.push("/purchase");
-  };
+};
 </script>
 
 <template>
@@ -75,7 +73,6 @@ const registerViaGoogle = async () => {
     <h2 class="text">Please login:</h2>
 
     <section class="form-info">
-
       <div id="login-via-email">
         <h1>Login via Email</h1>
         <form class="login" @submit.prevent="loginViaEmail()">
@@ -107,7 +104,7 @@ const registerViaGoogle = async () => {
           <!-- <p v-if="wrongPass"> {{ wrongPass }}</p> -->
         </form>
       </div>
-      
+
       <div id="reg-via-google">
         <h1>Register via Google</h1>
         <button @click="registerViaGoogle()">Sign in with Google</button>

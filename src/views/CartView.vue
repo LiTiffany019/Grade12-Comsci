@@ -96,5 +96,4 @@ img {
   height: 50%;
   margin-top: 1rem;
 }
-
 </style>
