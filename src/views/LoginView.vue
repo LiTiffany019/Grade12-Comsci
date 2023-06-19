@@ -119,12 +119,13 @@ const registerViaGoogle = async () => {
 <style scoped>
 .login-container {
   background-color: rgb(10, 10, 10);
-  height: 75vh;
+  /* height: 75vh; */
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 20%;
-  padding-bottom: 0;
+  padding: 16%;
+  /* padding-bottom: 0; */
+  text-align: center;
 }
 
 .text {
@@ -141,7 +142,15 @@ form {
   color: white;
 }
 
+form {
+  gap: 1rem;
+}
+
 .form-info {
   gap: 2rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
 }
 </style>
